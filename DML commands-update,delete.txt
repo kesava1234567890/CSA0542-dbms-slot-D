@@ -1,0 +1,138 @@
+mysql> use kesava;
+Database changed
+mysql> select*from mentees;
++-------+---------+------+------+
+| regno | name    | dept | age  |
++-------+---------+------+------+
+|    12 | kesava  | aids |   18 |
+|    13 | kiran   | aiml |   19 |
+|    14 | sunil   | cse  |   21 |
+|    15 | hithesh | ece  |   20 |
++-------+---------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> update mentees set dept="cse" where regno=15;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-------+---------+------+------+
+| regno | name    | dept | age  |
++-------+---------+------+------+
+|    12 | kesava  | aids |   18 |
+|    13 | kiran   | aiml |   19 |
+|    14 | sunil   | cse  |   21 |
+|    15 | hithesh | cse  |   20 |
++-------+---------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> delete from mentees where regno="12";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-------+---------+------+------+
+| regno | name    | dept | age  |
++-------+---------+------+------+
+|    13 | kiran   | aiml |   19 |
+|    14 | sunil   | cse  |   21 |
+|    15 | hithesh | cse  |   20 |
++-------+---------+------+------+
+3 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
