@@ -1,0 +1,86 @@
+mysql> use kesava;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_kesava |
++------------------+
+| faculty          |
+| mates            |
+| mentees          |
+| mentees1         |
+| mentees2         |
+| mentees3         |
+| mentees4         |
+| mentees5         |
+| mentees6         |
+| student          |
++------------------+
+10 rows in set (0.00 sec)
+
+mysql> select*from mentees2;
++-----------+---------+------+------+-------+
+| regno     | name    | age  | dept | marks |
++-----------+---------+------+------+-------+
+| 192224079 | kiran   |   19 | aiml |    91 |
+| 192224076 | sunil   |   21 | cse  |    92 |
+| 192211166 | hithesh |   20 | ece  |    93 |
++-----------+---------+------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create view marks_view as select dept,marks from mentees2;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select*from marks_view;
++------+-------+
+| dept | marks |
++------+-------+
+| aiml |    91 |
+| cse  |    92 |
+| ece  |    93 |
++------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create index dept on mentees2(dept);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from mentees2;
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table    | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| mentees2 |          1 | dept     |            1 | dept        | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++----------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+1 row in set (0.02 sec)
+mysql> create table per(pid int(20) not null auto_increment,name varchar(20),age int(10),primary key(pid));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> desc per;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| pid   | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
+| age   | int         | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table per auto_increment=100;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into per(name,age)values(gowtham
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into per(name,age)values("gowtham",30);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from per;
++-----+---------+------+
+| pid | name    | age  |
++-----+---------+------+
+| 100 | gowtham |   30 |
++-----+---------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into per(name,age) values("daya",35);
+Query OK, 1 row affected (0.02 sec)

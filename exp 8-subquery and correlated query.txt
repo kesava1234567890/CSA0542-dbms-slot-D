@@ -1,0 +1,49 @@
+mysql> use kesava;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_kesava |
++------------------+
+| faculty          |
+| mates            |
+| mentees          |
+| mentees1         |
+| mentees2         |
+| student          |
++------------------+
+6 rows in set (0.01 sec)
+
+mysql> select*from mentees2;
++-----------+---------+------+------+-------+
+| regno     | name    | age  | dept | marks |
++-----------+---------+------+------+-------+
+| 192224077 | kesava  |   18 | aids |    90 |
+| 192224079 | kiran   |   19 | aiml |    91 |
+| 192224076 | sunil   |   21 | cse  |    92 |
+| 192211166 | hithesh |   20 | ece  |    93 |
++-----------+---------+------+------+-------+
+4 rows in set (0.00 sec)
+mysql> create table mentees4(regno int(20),name varchar(20));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> select*from mentees4;
+Empty set (0.00 sec)
+
+mysql> insert into mentees4 values(192224077,"kesava");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees4;
++-----------+--------+
+| regno     | name   |
++-----------+--------+
+| 192224077 | kesava |
++-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> select regno,(select name from mentees4 where regno=192224077) as name,dept,age,marks from mentees2 where regno=192224077;
++-----------+--------+------+------+-------+
+| regno     | name   | dept | age  | marks |
++-----------+--------+------+------+-------+
+| 192224077 | kesava | aids |   18 |    90 |
++-----------+--------+------+------+-------+
+1 row in set (0.00 sec)

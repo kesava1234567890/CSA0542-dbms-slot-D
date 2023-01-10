@@ -1,0 +1,55 @@
+mysql> use kesava;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_kesava |
++------------------+
+| faculty          |
+| mates            |
+| mentees          |
+| mentees1         |
+| mentees2         |
+| mentees3         |
+| mentees4         |
+| student          |
++------------------+
+8 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    92 | se      |
+|    15 | hithesh | ece  |   20 |    93 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+mysql> create table mentees6(stdid int(20),depnam varchar (20),mark int(10));
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> insert into mentees6 values(192224079,"aiml",91);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into mentees6 values(192224076,"cse",92);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees6 values(192211166,"ece",93);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from mentees6;
++-----------+--------+------+
+| stdid     | depnam | mark |
++-----------+--------+------+
+| 192224079 | aiml   |   91 |
+| 192224076 | cse    |   92 |
+| 192211166 | ece    |   93 |
++-----------+--------+------+
+3 rows in set (0.00 sec)
+mysql> select stdid,depnam,mark from mentees6,mentees where mentees.regno=mentees6.stdid;
++-----------+--------+------+
+| stdid     | depnam | mark |
++-----------+--------+------+
+| 192224079 | aiml   |   91 |
+| 192224076 | cse    |   92 | |
++-----------+--------+------+
+3 rows in set (0.00 sec)
