@@ -1,0 +1,232 @@
+sql> use kesava
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_kesava |
++------------------+
+| employee         |
+| faculty          |
+| marks            |
+| marks_view       |
+| mates            |
+| mentees          |
+| mentees1         |
+| mentees2         |
+| mentees3         |
+| mentees4         |
+| mentees5         |
+| mentees6         |
+| movies           |
+| per              |
+| student          |
++------------------+
+15 rows in set (0.01 sec)
+
+mysql> create table book_company(book_no int(20),bookname varchar(20),authorname varchar(20),cost int(10),edition int(20));
+Query OK, 0 rows affected, 3 warnings (0.04 sec)
+
+mysql> insert into book_company values(11,"dbms","vikas",500,1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into book_company values(12,"se","ramya",570,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_company values(13,"python","rama",600,3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from book_company;
++---------+----------+------------+------+---------+
+| book_no | bookname | authorname | cost | edition |
++---------+----------+------------+------+---------+
+|      11 | dbms     | vikas      |  500 |       1 |
+|      12 | se       | ramya      |  570 |       2 |
+|      13 | python   | rama       |  600 |       3 |
++---------+----------+------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> update book_company set authorname="deepa" where book_no=11;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from book_company;
++---------+----------+------------+------+---------+
+| book_no | bookname | authorname | cost | edition |
++---------+----------+------------+------+---------+
+|      11 | dbms     | deepa      |  500 |       1 |
+|      12 | se       | ramya      |  570 |       2 |
+|      13 | python   | rama       |  600 |       3 |
++---------+----------+------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create table author(authname varchar(20),id int(10),area varchar(20));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> insert into author values("ram",455,"delhi");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into author values("arjun",456,"tn");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into author values("prathap",457,"ap");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from author;
++----------+------+-------+
+| authname | id   | area  |
++----------+------+-------+
+| ram      |  455 | delhi |
+| arjun    |  456 | tn    |
+| prathap  |  457 | ap    |
++----------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select authorname from book_company where bookname="dbms";
++------------+
+| authorname |
++------------+
+| deepa      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> alter table book_company add publishedyear int(4);
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> update book_company set publishedyear=2005 where book_no=11;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update book_company set publishedyear=2006 where book_no=12;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update book_company set publishedyear=2007 where book_no=13;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*frm book_company;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'frm book_company' at line 1
+mysql> select*from book_company;
++---------+----------+------------+------+---------+---------------+
+| book_no | bookname | authorname | cost | edition | publishedyear |
++---------+----------+------------+------+---------+---------------+
+|      11 | dbms     | deepa      |  500 |       1 |          2005 |
+|      12 | se       | ramya      |  570 |       2 |          2006 |
+|      13 | python   | rama       |  600 |       3 |          2007 |
++---------+----------+------------+------+---------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> use kesava
+Database changed
+mysql> create table pateints(patid int(10),patname varchar(20),disease varchar(20),age int(3)patno int(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'patno int(10))' at line 1
+mysql> create table pateints(patid int(10),patname varchar(20),disease varchar(20),age int(3));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> desc pateints;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| patid   | int         | YES  |     | NULL    |       |
+| patname | varchar(20) | YES  |     | NULL    |       |
+| disease | varchar(20) | YES  |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into pateints values(123,"nikhil","fever",23);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into pateints values(124,"charan","cold",24);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into pateints values(125,"ram","malaria",25);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from pateints;
++-------+---------+---------+------+
+| patid | patname | disease | age  |
++-------+---------+---------+------+
+|   123 | nikhil  | fever   |   23 |
+|   124 | charan  | cold    |   24 |
+|   125 | ram     | malaria |   25 |
++-------+---------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> create table doctor(dctid int(10),name varchar(20),specialization varchar(20));
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> insert into doctor values(567,"latha","mbbs");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into doctor values(568,"vidhya","rmp");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into doctor values(569,"balaji","heart");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from doctor;
++-------+--------+----------------+
+| dctid | name   | specialization |
++-------+--------+----------------+
+|   567 | latha  | mbbs           |
+|   568 | vidhya | rmp            |
+|   569 | balaji | heart          |
++-------+--------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select dctid,name from doctor;
++-------+--------+
+| dctid | name   |
++-------+--------+
+|   567 | latha  |
+|   568 | vidhya |
+|   569 | balaji |
++-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from pateints where disease="fever";
++-------+---------+---------+------+
+| patid | patname | disease | age  |
++-------+---------+---------+------+
+|   123 | nikhil  | fever   |   23 |
++-------+---------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> create table pharmacy(
+    -> end//
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '//' at line 2
+mysql> create table pharmacy(medicineid int(10),medname varchar(20),expdate int(20));
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> insert into pharmacy values(245,"paracetamol",05-2023);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into pharmacy values(256,"dolo",07-2023);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into pharmacy values(576,"amee-d",09-2023);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*fom pharmacy;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fom pharmacy' at line 1
+mysql> select*from pharmacy;
++------------+-------------+---------+
+| medicineid | medname     | expdate |
++------------+-------------+---------+
+|        245 | paracetamol |   -2018 |
+|        256 | dolo        |   -2016 |
+|        576 | amee-d      |   -2014 |
++------------+-------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select medname from pharmacy where disease="fever";
+ERROR 1054 (42S22): Unknown column 'disease' in 'where clause'
+mysql> select medname from pharmacy where expdate=-2018;
++-------------+
+| medname     |
++-------------+
+| paracetamol |
++-------------+
+1 row in set (0.00 sec)

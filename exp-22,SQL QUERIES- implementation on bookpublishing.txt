@@ -1,0 +1,117 @@
+mysql> use kesava
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_kesava |
++------------------+
+| employee         |
+| faculty          |
+| marks            |
+| marks_view       |
+| mates            |
+| mentees          |
+| mentees1         |
+| mentees2         |
+| mentees3         |
+| mentees4         |
+| mentees5         |
+| mentees6         |
+| movies           |
+| per              |
+| student          |
++------------------+
+15 rows in set (0.01 sec)
+
+mysql> create table book_company(book_no int(20),bookname varchar(20),authorname varchar(20),cost int(10),edition int(20));
+Query OK, 0 rows affected, 3 warnings (0.04 sec)
+
+mysql> insert into book_company values(11,"dbms","vikas",500,1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into book_company values(12,"se","ramya",570,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_company values(13,"python","rama",600,3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from book_company;
++---------+----------+------------+------+---------+
+| book_no | bookname | authorname | cost | edition |
++---------+----------+------------+------+---------+
+|      11 | dbms     | vikas      |  500 |       1 |
+|      12 | se       | ramya      |  570 |       2 |
+|      13 | python   | rama       |  600 |       3 |
++---------+----------+------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> update book_company set authorname="deepa" where book_no=11;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from book_company;
++---------+----------+------------+------+---------+
+| book_no | bookname | authorname | cost | edition |
++---------+----------+------------+------+---------+
+|      11 | dbms     | deepa      |  500 |       1 |
+|      12 | se       | ramya      |  570 |       2 |
+|      13 | python   | rama       |  600 |       3 |
++---------+----------+------------+------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create table author(authname varchar(20),id int(10),area varchar(20));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> insert into author values("ram",455,"delhi");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into author values("arjun",456,"tn");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into author values("prathap",457,"ap");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from author;
++----------+------+-------+
+| authname | id   | area  |
++----------+------+-------+
+| ram      |  455 | delhi |
+| arjun    |  456 | tn    |
+| prathap  |  457 | ap    |
++----------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select authorname from book_company where bookname="dbms";
++------------+
+| authorname |
++------------+
+| deepa      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> alter table book_company add publishedyear int(4);
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> update book_company set publishedyear=2005 where book_no=11;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update book_company set publishedyear=2006 where book_no=12;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update book_company set publishedyear=2007 where book_no=13;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*frm book_company;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'frm book_company' at line 1
+mysql> select*from book_company;
++---------+----------+------------+------+---------+---------------+
+| book_no | bookname | authorname | cost | edition | publishedyear |
++---------+----------+------------+------+---------+---------------+
+|      11 | dbms     | deepa      |  500 |       1 |          2005 |
+|      12 | se       | ramya      |  570 |       2 |          2006 |
+|      13 | python   | rama       |  600 |       3 |          2007 |
++---------+----------+------------+------+---------+---------------+
+3 rows in set (0.00 sec)
