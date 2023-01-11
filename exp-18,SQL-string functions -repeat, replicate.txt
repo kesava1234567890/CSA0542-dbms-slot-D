@@ -1,0 +1,30 @@
+mysql> use kesava
+Database changed
+mysql> select*from mentees;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    92 | se      |
+|    15 | hithesh | eee  |   20 |    93 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select repeat(name,2) from mentees;
++----------------+
+| repeat(name,2) |
++----------------+
+| kirankiran     |
+| sunilsunil     |
+| hitheshhithesh |
++----------------+
+3 rows in set (0.03 sec)
+mysql> select repeat(dept,2) from mentees;
++----------------+
+| repeat(dept,2) |
++----------------+
+| aimlaiml       |
+| csecse         |
+| eeeeee         |
++----------------+
+3 rows in set (0.00 sec)

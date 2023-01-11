@@ -1,0 +1,81 @@
+ql> use kesava
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_kesava |
++------------------+
+| faculty          |
+| marks_view       |
+| mates            |
+| mentees          |
+| mentees1         |
+| mentees2         |
+| mentees3         |
+| mentees4         |
+| mentees5         |
+| mentees6         |
+| movies           |
+| per              |
+| student          |
++------------------+
+13 rows in set (0.01 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| studid | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| age    | int         | YES  |     | NULL    |       |
+| dep    | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> create user kesava;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> grant all on student to kesava;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for kesava;
++------------------------------------------------------------+
+| Grants for kesava@%                                        |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `kesava`@`%`                         |
+| GRANT ALL PRIVILEGES ON `kesava`.`student` TO `kesava`@`%` |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on student from kesava;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show grants for kesava;
++------------------------------------+
+| Grants for kesava@%                |
++------------------------------------+
+| GRANT USAGE ON *.* TO `kesava`@`%` |
++------------------------------------+
+1 row in set (0.00 sec)
+mysql> grant select,update on mentees to kesava;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show grants for kesava;
++------------------------------------------------------------+
+| Grants for kesava@%                                        |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `kesava`@`%`                         |
+| GRANT SELECT, UPDATE ON `kesava`.`mentees` TO `kesava`@`%` |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on mentees from kesava;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show grants for kesava;
++----------------------------------------------------+
+| Grants for kesava@%                                |
++----------------------------------------------------+
+| GRANT USAGE ON *.* TO `kesava`@`%`                 |
+| GRANT SELECT ON `kesava`.`mentees` TO `kesava`@`%` |
++----------------------------------------------------+
+2 rows in set (0.00 sec)

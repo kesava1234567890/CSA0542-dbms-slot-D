@@ -1,0 +1,87 @@
+mysql> use kesava;
+Database changed
+mysql> alter table mentees add subject varchar(20);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select*from mentees;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | NULL    |
+|    14 | sunil   | cse  |   21 |    90 | NULL    |
+|    15 | hithesh | cse  |   20 |    90 | NULL    |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> update mentees set subject="pdsd" where dept="aiml";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="se" where dept="cse";
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from mentees;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    90 | se      |
+|    15 | hithesh | cse  |   20 |    90 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where marks between 90 and 91;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    90 | se      |
+|    15 | hithesh | cse  |   20 |    90 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where marks not between 95 and 99;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    90 | se      |
+|    15 | hithesh | cse  |   20 |    90 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select sum(marks) where dept="aiml";
+ERROR 1054 (42S22): Unknown column 'marks' in 'field list'
+mysql> select sum(marks) from mentees where dept="aiml";
++------------+
+| sum(marks) |
++------------+
+|         91 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) as average from mentees;
++---------+
+| average |
++---------+
+| 90.3333 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) as minimum from mentees;
++---------+
+| minimum |
++---------+
+|      90 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select max(marks) as maximum from mentees;
++---------+
+| maximum |
++---------+
+|      91 |
++---------+
+1 row in set (0.00 sec)

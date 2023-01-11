@@ -1,0 +1,110 @@
+mysql> use kesava
+Database changed
+mysql> delimiter //
+mysql> create function customer(cre_lim int)
+    -> returns varchar(20)
+    -> deterministic
+    -> begin
+    -> declare customer_level varchar(20);
+    -> set customer_level='';
+    -> if cre_lim >50000 then
+    -> set customer_level='platinum';
+    -> elseif cre_lim <=50000 and cre_lim>=10000 then
+    -> set customer_level='gold';
+    -> elseif cre_lim < 10000 then
+    -> set customer_level='silver';
+    -> end if;
+    -> return customer_level;
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select customer(40000);
+    -> //
++-----------------+
+| customer(40000) |
++-----------------+
+| gold            |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select customer(55000);
+    -> //
++-----------------+
+| customer(55000) |
++-----------------+
+| platinum        |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select customer(1000);
+    -> //
++----------------+
+| customer(1000) |
++----------------+
+| silver         |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create procedure find_fact(in n int)
+    -> begin
+    -> set @@global.max_sp_recursion_depth=255;
+    -> set @@session.max_sp_recursion_depth=255;
+    -> call factorial(n,@fact);
+    -> select @fact;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter $$
+mysql> create procedure factorial(in n int,out fact int)
+    -> begin
+    -> if n=1 then
+    -> set fact:=1;
+    -> else
+    -> call factorial(n-1,fact);
+    -> set fact:=n* fact;
+    -> end if;
+    -> end
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call find_fact(5);
+    -> $$
++-------+
+| @fact |
++-------+
+|   120 |
++-------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter //
+mysql> create function find_sum1(a int,b int)
+    -> returns int
+    -> deterministic
+    -> begin
+    -> declare sum int;
+    -> set sum=a+b;
+    -> return sum;
+    -> end //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select find_sum1(4,7);
+    -> //
++----------------+
+| find_sum1(4,7) |
++----------------+
+|             11 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select find_sum1(-2,-9);
+    -> //
++------------------+
+| find_sum1(-2,-9) |
++------------------+
+|              -11 |
++------------------+
+1 row in set (0.01 sec)

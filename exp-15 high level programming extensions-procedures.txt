@@ -1,0 +1,52 @@
+mysql> use kesava
+Database changed
+mysql> select*from mentees;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    92 | se      |
+|    15 | hithesh | eee  |   20 |    93 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure mentee_info()
+    -> begin
+    -> select*from mentees;
+    -> end; //
+ERROR 1304 (42000): PROCEDURE mentee_info already exists
+mysql> call mentee_info();
+    -> //
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    92 | se      |
+|    15 | hithesh | eee  |   20 |    93 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create procedure while_loop()
+    -> begin
+    -> declare num int default 1;
+-> declare res varchar(50) default '';
+    -> while num < 78125 do
+    -> set res = concat(res,num,',');
+    -> set num = num*5;
+    -> end while;
+    -> select res;
+    -> end //
+ERROR 1304 (42000): PROCEDURE while_loop already exist
+mysql> call while_loop()
+    -> //
++----------------------------+
+| res                        |
++----------------------------+
+| 1,5,25,125,625,3125,15625, |
++----------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)

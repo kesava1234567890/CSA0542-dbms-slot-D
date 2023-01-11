@@ -1,0 +1,107 @@
+mysql> show tables;
++------------------+
+| Tables_in_kesava |
++------------------+
+| faculty          |
+| marks_view       |
+| mates            |
+| mentees          |
+| mentees1         |
+| mentees2         |
+| mentees3         |
+| mentees4         |
+| mentees5         |
+| mentees6         |
+| per              |
+| student          |
++------------------+
+12 rows in set (0.02 sec)
+
+mysql> select*from mentees;
++-------+---------+------+------+-------+---------+
+| regno | name    | dept | age  | marks | subject |
++-------+---------+------+------+-------+---------+
+|    13 | kiran   | aiml |   19 |    91 | pdsd    |
+|    14 | sunil   | cse  |   21 |    92 | se      |
+|    15 | hithesh | eee  |   20 |    93 | se      |
++-------+---------+------+------+-------+---------+
+3 rows in set (0.03 sec)
+
+mysql> select name,marks,case when marks>95 then 'excellent' when marks>90 then 'good' else 'average' end as performance from mentees;
++---------+-------+-------------+
+| name    | marks | performance |
++---------+-------+-------------+
+| kiran   |    91 | good        |
+| sunil   |    92 | good        |
+| hithesh |    93 | good        |
++---------+-------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select name,marks,if(marks>=95,"excellent marks","good marks")from mentees;
++---------+-------+----------------------------------------------+
+| name    | marks | if(marks>=95,"excellent marks","good marks") |
++---------+-------+----------------------------------------------+
+| kiran   |    91 | good marks                                   |
+| sunil   |    92 | good marks                                   |
+| hithesh |    93 | good marks                                   |
++---------+-------+----------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create function repeat_demo(inc int)
+    -> returns char(40)
+    -> deterministic
+    -> begin
+    -> declare income int;
+    -> set income=0;
+    -> repeat
+    -> set income=income+inc;
+    -> until income>4000
+    -> end repeat;
+    -> return "income>4000 detected";
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select repeat_demo(3000);$$
++----------------------+
+| repeat_demo(3000)    |
++----------------------+
+| income>4000 detected |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select repeat_demo(4000);$$
++----------------------+
+| repeat_demo(4000)    |
++----------------------+
+| income>4000 detected |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> create function while_demo(value char(1))
+    -> returns char(20)
+    -> deterministic
+    -> begin
+    -> declare str char(100);
+    -> declare i int;
+    -> set str='';
+    -> set i=1;
+    -> label:
+    -> while i>5 do
+    -> set str =concat(str,value);
+    -> set i=i+1;
+    -> end while label;
+    -> return str;
+    -> end;
+    -> $$
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select while_demo('a');$$
++-----------------+
+| while_demo('a') |
++-----------------+
+|                 |
++-----------------+
+1 row in set (0.00 sec)
